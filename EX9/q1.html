@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>23BCE1321</title>
+</head>
+
+<body>
+    <h2 style="text-align: center;">New York City Daily Temperature Categorization</h2>
+    <table style="border: 1px solid black; border-collapse: collapse; text-align: center;width: 400px;">
+        <thead>
+            <tr>
+                <th style="padding: 10px; border: 1px solid black;">Temperature (°F)</th>
+                <th style="padding: 10px; border: 1px solid black;">Category</th>
+            </tr>
+        </thead>
+        <tbody id="temp-table">
+        </tbody>
+    </table>
+    <div>
+        <p id="hot-count"></p>
+        <p id="pleasant-count"></p>
+        <p id="cold-count"></p>
+    </div>
+    <script>
+        const temperatures = [55, 62, 68, 74, 59, 45, 41, 58, 60, 67, 65, 78, 82, 88, 91, 92, 90, 93, 87, 80, 78, 79, 72, 68, 61, 59, 55, 65];
+        let hotCount = 0;
+        let pleasantCount = 0;
+        let coldCount = 0;
+        function categorizeTemperatures() {
+            const tableBody = document.getElementById("temp-table");
+            temperatures.forEach(temp => {
+                let category = '';
+                if (temp >= 85) {
+                    category = 'HOT';
+                    hotCount++;
+                } else if (temp >= 60 && temp <= 84) {
+                    category = 'PLEASANT';
+                    pleasantCount++;
+                } else {
+                    category = 'COLD';
+                    coldCount++;
+                }
+                const row = document.createElement('tr');
+                row.style.borderBottom = "1px solid #ddd";
+                row.innerHTML = `<td style="padding: 10px; border: 1px solid black;">${temp}°F</td>
+                                 <td style="padding: 10px; border: 1px solid black;">${category}</td>`;
+                tableBody.appendChild(row);
+            });
+            document.getElementById("hot-count").innerText = `Number of HOT days: ${hotCount}`;
+            document.getElementById("pleasant-count").innerText = `Number of PLEASANT days: ${pleasantCount}`;
+            document.getElementById("cold-count").innerText = `Number of COLD days: ${coldCount}`;
+        }
+        categorizeTemperatures();
+    </script>
+</body>
+</html>
