@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1321</title>
+    <style>
+        canvas{
+            background: linear-gradient(to bottom, #8b0000, #000000);
+        }
+    </style>
+</head>
+<body>
+    <h2>Audio</h2>
+    <audio controls>
+        <source src="clock.mp3" type="audio/mp3">
+    </audio>
+    <br>
+    <h2>Video</h2>
+    <video id="myvid" width="350" height="200" controls>
+        <source src="nature.mp4" type="video/mp4">
+    </video>
+    <br>
+    <h2>Canvas</h2>
+    <canvas id="myCanvas" width="350" height="200" style="border:1px solid #000000;">
+    </canvas>
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const laptopX = canvasWidth / 2 - 100;
+        const laptopY = canvasHeight / 2 - 50;
+        ctx.fillStyle = "grey";
+        ctx.fillRect(laptopX, laptopY, 200, 100);
+        ctx.fillStyle = "black";
+        ctx.fillRect(laptopX + 5, laptopY + 5, 190, 90);
+        ctx.fillStyle = "grey";
+        ctx.fillRect(laptopX - 30, laptopY + 100, 260, 10);
+        ctx.beginPath();
+        ctx.globalAlpha = 0.6;
+        const centerX = laptopX + 100;
+        const centerY = laptopY + 50;
+        const radius = 30; 
+        ctx.arc(centerX - radius * 0.2, centerY, radius, 0, 2 * Math.PI); 
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(centerX + radius * 0.2, centerY, radius, 0, 2 * Math.PI); 
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+    </script>
+</body>
+</html>
