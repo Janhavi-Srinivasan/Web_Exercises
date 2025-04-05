@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1321</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2e9;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: #8d9e89;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        input[type="text"], input[type="number"], input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+        .product {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .product img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        .product label {
+            margin: 0;
+            flex: 1;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #c2a14d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a0843b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Grocery Order Form</h2>
+        <form id="orderForm">
+            <label for="customerName">Customer Name</label>
+            <input type="text" id="customerName" name="customerName" required>
+
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <h3 style="color: white;">Products</h3>
+            <div class="product">
+                <img src="https://thumbs.dreamstime.com/b/red-apple-isolated-clipping-path-19130134.jpg" alt="Apple">
+                <input type="checkbox" id="apple" name="product" value="Apple" data-price="10">
+                <label>Apple $10/kg</label>
+                <input type="number" id="appleQty" name="appleQty" min="0" placeholder="kg">
+            </div>
+
+            <div class="product">
+                <img src="https://png.pngtree.com/png-clipart/20220716/ourmid/pngtree-banana-yellow-fruit-banana-skewers-png-image_5944324.png" alt="Banana">
+                <input type="checkbox" id="banana" name="product" value="Banana" data-price="5">
+                <label>Banana $5/kg</label>
+                <input type="number" id="bananaQty" name="bananaQty" min="0" placeholder="kg">
+            </div>
+
+            <div class="product">
+                <img src="https://thumbs.dreamstime.com/b/avocado-18188183.jpg" alt="Avocado">
+                <input type="checkbox" id="avocado" name="product" value="Avocado" data-price="7">
+                <label>Avocado $7/kg</label>
+                <input type="number" id="avocadoQty" name="avocadoQty" min="0" placeholder="kg">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("orderForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("customerName").value;
+            const phone = document.getElementById("phoneNumber").value;
+            const email = document.getElementById("email").value;
+
+            const appleChecked = document.getElementById("apple").checked;
+            const appleQty = parseFloat(document.getElementById("appleQty").value) || 0;
+            const applePrice = appleChecked ? appleQty * 10 : 0;
+
+            const bananaChecked = document.getElementById("banana").checked;
+            const bananaQty = parseFloat(document.getElementById("bananaQty").value) || 0;
+            const bananaPrice = bananaChecked ? bananaQty * 5 : 0;
+
+            const avocadoChecked = document.getElementById("avocado").checked;
+            const avocadoQty = parseFloat(document.getElementById("avocadoQty").value) || 0;
+            const avocadoPrice = avocadoChecked ? avocadoQty * 7 : 0;
+
+            const totalAmount = applePrice + bananaPrice + avocadoPrice;
+
+            let receiptContent = `
+                <html>
+                <head>
+                    <title>Order Receipt</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f4f4f4;
+                            margin: 20px;
+                            padding: 20px;
+                        }
+                        h1 {
+                            text-align: center;
+                        }
+                        .receipt {
+                            background-color: #e0e0e0;
+                            padding: 20px;
+                            border-radius: 10px;
+                            max-width: 400px;
+                            margin: auto;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h1>Order Receipt</h1>
+                    <div class="receipt">
+                        <p><strong>Customer Name:</strong> ${name}</p>
+                        <p><strong>Phone Number:</strong> ${phone}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                        <h3>Products</h3>
+                        <p><strong>Apple Quantity:</strong> ${appleChecked ? appleQty : 0} kg ($${applePrice})</p>
+                        <p><strong>Banana Quantity:</strong> ${bananaChecked ? bananaQty : 0} kg ($${bananaPrice})</p>
+                        <p><strong>Avocado Quantity:</strong> ${avocadoChecked ? avocadoQty : 0} kg ($${avocadoPrice})</p>
+                        <h3>Total Amount: $${totalAmount.toFixed(2)}</h3>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            const receiptWindow = window.open("", "_blank");
+            receiptWindow.document.write(receiptContent);
+            receiptWindow.document.close();
+        });
+    </script>
+</body>
+</html>
