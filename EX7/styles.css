@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/009/731/482/non_2x/cute-seamless-pattern-with-colorful-pets-paws-cat-or-dog-footprint-outline-pastel-blue-background-with-dots-vector.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+header {
+    text-align: center;
+    padding: 20px;
+}
+.rainbow-text {
+    font-size: 3em;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    text-align: center;
+    animation: rainbow 5s infinite;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0%; }
+    100% { background-position: 100%; }
+}
+.description {
+    column-count: 3;
+    column-gap: 20px;
+    line-height: 30pt;
+    padding: 20px;
+    color: #333;
+}
+.play-area {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.dog {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100px;
+    height: auto;
+    animation: dog-chase 3s infinite;
+}
+.ball {
+    position: absolute;
+    bottom: 40px; 
+    left: 30px;  
+    animation: ball-chase 10s infinite;
+}
+@keyframes dog-chase {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(100px); }
+    100% { transform: translateX(200px); }
+}
+@keyframes ball-chase {
+    0% { transform: translateX(30px); }
+    50% { transform: translateX(130px); }
+    100% { transform: translateX(230px); }
+}
