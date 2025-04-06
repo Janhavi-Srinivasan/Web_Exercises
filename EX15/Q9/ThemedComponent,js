@@ -1,0 +1,15 @@
+import React from "react";
+import { useTheme } from "./ThemeContext";
+
+const ThemedComponent = () => {
+  const { isDarkMode } = useTheme();
+
+  return (
+    <div style={{ padding: "20px", backgroundColor: isDarkMode ? "#333" : "#fff", color: isDarkMode ? "#fff" : "#000" }}>
+      <h2>{isDarkMode ? "Dark" : "Light"} Mode</h2>
+      <p>This is a {isDarkMode ? "dark" : "light"} themed component.</p>
+    </div>
+  );
+};
+
+export default ThemedComponent;
